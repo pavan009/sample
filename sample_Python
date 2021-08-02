@@ -1,0 +1,48 @@
+# Using flask to make an api
+# import necessary libraries and functions
+from flask import Flask, jsonify, request
+from flask_mail import Mail, Message
+import os
+import smtplib
+# creating a Flask app
+app = Flask(__name__)
+# on the terminal type: curl http://127.0.0.1:5000/
+# returns hello world when we use GET.
+# returns the data that we send when we use POST.
+@app.route('/', methods = ['GET', 'POST'])
+def home():
+    if(request.method == 'GET'):
+        rec= request.args.get('rec')
+        bod = request.args.get('body')
+        sub = request.args.get('sub')
+        gmail_user = 'pavan.vadapalli009@gmail.com'
+        gmail_password = 'pavanmanju'
+
+        sent_from = gmail_user
+        to = [rec]
+        subject = sub
+        body = bod
+
+        email_text = """\
+        From: %s
+        To: %s
+        Subject: %s
+
+        %s
+        """ % (sent_from, ", ".join(to), subject, body)
+
+        try:
+            server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+            server.ehlo()
+            server.login(gmail_user, gmail_password)
+            server.sendmail(sent_from, to, email_text)
+            server.close()
+
+            return 'Email sent!'
+        except:
+            return 'Something went wrong...'
+# driver function
+if __name__ == '__main__':
+
+    app.run(debug = True)
+    
