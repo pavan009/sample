@@ -1,0 +1,66 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "horizontalAlignment": "Left",
+                                    "size": "Medium",
+                                    "text": "Name"
+                                }
+                            ],
+                            "width": "100px"
+                        },
+                        {
+                            "type": "Column",
+                            "width": "stretch",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Description",
+                                    "horizontalAlignment": "Left",
+                                    "size": "Medium"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "ColumnSet",
+                    "spacing": "None",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "items": [
+                                {
+                                    "$data":"${properties}",
+                                    "type": "TextBlock",
+                                    "horizontalAlignment": "Left",
+                                    "text": "${key}",
+                                    "wrap": true
+                                }
+                            ],
+                            "width": "100px"
+                        },
+                        {
+                            "type": "Column",
+                            "width": "stretch",
+                            "items": [
+                                {
+                                    "$data":"${properties}",
+                                    "type": "TextBlock",
+                                    "text": "${value}"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.0"
+}
